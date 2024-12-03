@@ -13,7 +13,9 @@ class DepositController extends Controller
      */
     public function index()
     {
-        //
+        return view('deposits.index', [
+            'deposits' => Deposit::query()->where('user_id', auth()->user()->id)->paginate(10)
+        ]);
     }
 
     /**
@@ -37,7 +39,9 @@ class DepositController extends Controller
         $deposit->user_id = auth()->user()->id;
         $deposit->save();
 
-        return redirect()->route('deposits.index');
+        return redirect()
+            ->route('deposits.index')
+            ->with('status', 'Data submited!');
     }
 
     /**
