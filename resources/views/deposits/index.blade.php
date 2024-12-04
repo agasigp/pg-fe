@@ -49,21 +49,24 @@
                                                 </td>
                                                 <td>
                                                     @php
-                                                        if ($deposit->status == 0) {
+                                                        if ($deposit->status === 0) {
                                                             $statusText = 'Not Sent';
                                                             $className = 'neutral';
-                                                        } elseif ($deposit->stratus == 1) {
+                                                        } elseif ($deposit->status === 1) {
                                                             $statusText = 'Sent, error 4XX';
                                                             $className = 'warning';
-                                                        } elseif ($deposit->status == 2) {
-                                                            $statusText = 'Sent, status failed (1)';
-                                                            $className = 'danger';
-                                                        } else {
-                                                            $statusText = 'Sent, status success (2)';
+                                                        } elseif ($deposit->status === 2) {
+                                                            $statusText = 'Sent, status failed (2)';
+                                                            $className = 'error';
+                                                        } elseif ($deposit->status === 3) {
+                                                            $statusText = 'Sent, status success (1)';
                                                             $className = 'success';
+                                                        } else {
+                                                            $statusText = 'Sent, erro 5xx';
+                                                            $className = 'error';
                                                         }
                                                     @endphp
-                                                    <span class="badge badge-{{ $className }}">{{ $statusText }}</span>
+                                                    <div class="badge badge-{{ $className }}">{{ $statusText }}</div>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -30,7 +30,7 @@
                             </div>
                             <div>
                                 <x-input-label for="amount" :value="'Amount'" />
-                                <x-text-input id="amount" class="block mt-1 w-full" type="number" name="amount"
+                                <x-text-input id="amount" class="block mt-1 w-full" type="number" name="amount" step="0.01"
                                     :value="old('amount')" required autofocus autocomplete="amount" />
                                 <x-input-error :messages="$errors->get('amount')" class="mt-2" />
                             </div>
