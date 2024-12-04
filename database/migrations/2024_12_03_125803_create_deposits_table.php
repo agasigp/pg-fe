@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('amount', 11, 2);
             $table->unsignedTinyInteger('status')
                 ->default(0)
-                ->comment('0=not sent 1=sent but response is 4xx, 2=sent & response 200 but respons status failed (1), 3=sent & response status = success(2)');
+                ->comment('0=not sent 1=sent but response is 4xx, 2=sent & response 200 but respons status failed (1), 3=sent & response status = success(2), 4=error 500');
             $table->timestamps();
         });
     }

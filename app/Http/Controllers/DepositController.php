@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDepositRequest;
 use App\Http\Requests\UpdateDepositRequest;
+use App\Jobs\ProcessDeposit;
 use App\Models\Deposit;
 
 class DepositController extends Controller
@@ -38,6 +39,8 @@ class DepositController extends Controller
         ]);
         $deposit->user_id = auth()->user()->id;
         $deposit->save();
+
+        ProcessDeposit::dispatch($deposit);
 
         return redirect()
             ->route('deposits.index')
